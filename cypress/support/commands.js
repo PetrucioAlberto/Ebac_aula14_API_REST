@@ -1,3 +1,5 @@
+// Login
+
 Cypress.Commands.add('token', (email, senha) => {
     cy.request({
         method: 'POST',
@@ -11,6 +13,9 @@ Cypress.Commands.add('token', (email, senha) => {
         return response.body.authorization
     })
  })
+
+
+ // Produtos
 
  Cypress.Commands.add('cadastrarProduto' , (token, produto, preco, descricao, quantidade) =>{
     cy.request({
@@ -26,3 +31,43 @@ Cypress.Commands.add('token', (email, senha) => {
           failOnStatusCode: false
     })
  })
+
+ 
+  // Usuarios
+
+ Cypress.Commands.add('cadastrarUsuario' , (nome, email, senha, administrador) =>{
+    cy.request({
+        method: 'POST', 
+        url: 'usuarios',
+        body: {
+            "nome": nome,
+            "email": email,
+            "password": senha,
+            "administrador": administrador
+          },
+          failOnStatusCode: false
+    })
+ })
+
+ Cypress.Commands.add('BuscarUsuario', (metodo, url) => {
+    cy.request({
+        method: metodo,
+        url: url,
+      })
+ })
+
+ Cypress.Commands.add('DeletarUsuario', (metodo, url, id) => {
+    cy.request({
+        method: metodo,
+        url: `${url}/${id}`,
+      })
+ })
+ 
+ 
+ 
+
+
+ 
+
+
+ 
